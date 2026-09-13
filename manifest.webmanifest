@@ -1,5 +1,0 @@
-{
-  "name":"Arjun's World Explorer","short_name":"Arjun World","start_url":"./","display":"standalone",
-  "background_color":"#eef9ff","theme_color":"#0878d1",
-  "icons":[{"src":"icon-512.png","sizes":"512x512","type":"image/png"},{"src":"apple-touch-icon.png","sizes":"180x180","type":"image/png"}]
-}
