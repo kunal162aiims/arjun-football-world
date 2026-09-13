@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#06142d"><link rel="manifest" href="manifest.json">
-<title>Arjun's Football World V2.1</title>
+<title>Arjun's Football World V3</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#06142d;color:#f7fbff;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 .app{max-width:1180px;margin:auto;padding:12px 12px 90px}header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 4px 13px}
@@ -33,7 +33,7 @@
 @media(max-width:800px){.quick{grid-template-columns:repeat(4,1fr)}.featureGrid,.lower{grid-template-columns:1fr}.playerRow{grid-template-columns:repeat(3,1fr)}.list{grid-template-columns:repeat(2,1fr)}.hero h2{font-size:29px}}
 @media(max-width:500px){.brand h1{font-size:21px}.brand p{font-size:10px}.avatar{display:none}.hero{min-height:245px;padding:20px}.quick{grid-template-columns:repeat(2,1fr)}.playerRow{grid-template-columns:repeat(2,1fr)}.tabs button{font-size:9px}.tabs button:nth-child(n+7){display:none}}
 </style></head><body><div class="app">
-<header><div class="brand"><div class="ball">⚽</div><div><h1>Arjun's Football World <span style="color:#18d47d">V2.1</span></h1><p>Learn • Explore • Play • Become a Football Expert!</p></div></div><div class="level"><div class="levelbox">⭐ <b id="level">1</b><small id="xp">0 XP</small></div><img class="avatar" src="arjun-profile.jpg" alt="Arjun"></div></header>
+<header><div class="brand"><div class="ball">⚽</div><div><h1>Arjun's Football World <span style="color:#18d47d">V3</span></h1><p>Learn • Explore • Play • Become a Football Expert!</p></div></div><div class="level"><div class="levelbox">⭐ <b id="level">1</b><small id="xp">0 XP</small></div><img class="avatar" src="arjun-profile.jpg" alt="Arjun"></div></header>
 <section class="arjunCard">
   <img src="arjun-profile.jpg" alt="Arjun" class="arjunPhoto">
   <div class="arjunInfo">
@@ -48,6 +48,12 @@
   </div>
 </section>
 
+
+<section class="panel" style="margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(100deg,#182d68,#0a654f)">
+  <div><span class="pill">🎯 FOOTBALL MASTERMIND</span><h2 style="margin:6px 0 3px">Ready for a serious football quiz?</h2>
+  <div class="muted">Rules • tactics • World Cups • clubs • players • records</div></div>
+  <button class="primary" onclick="startQuiz()">▶ Quiz Now</button>
+</section>
 <div id="home" class="view active">
 <section class="hero"><div class="heroContent"><h2>A Bigger World Through Football!</h2><p>Players • Clubs • Countries • Tournaments • History • Fun Games</p><button class="primary" onclick="show('games')">▶ Let's Play!</button></div></section>
 <div class="quick">
@@ -62,7 +68,7 @@
 <section class="section"><div class="sectionTitle"><h2>⭐ Featured Players</h2><span class="muted">Tap a player</span></div><div class="panel"><div class="playerRow" id="homePlayers"></div></div></section>
 <section class="section"><div class="lower">
 <div class="panel"><div class="sectionTitle"><h2>🌍 Interactive World Map</h2><span class="pill">EXPLORE</span></div><div class="world"><div class="worldmap">🌎</div><div class="pin p1">⚽</div><div class="pin p2">⚽</div><div class="pin p3">⚽</div><div class="pin p4">⚽</div></div></div>
-<div class="panel"><div class="sectionTitle"><h2>🏆 Top Clubs</h2><span class="muted">V2.1</span></div><div class="clubgrid" id="topClubs"></div></div>
+<div class="panel"><div class="sectionTitle"><h2>🏆 Top Clubs</h2><span class="muted">V3</span></div><div class="clubgrid" id="topClubs"></div></div>
 <div class="panel"><div class="sectionTitle"><h2>🎯 Game Zone</h2><span class="muted">Play & Earn XP</span></div><div class="games"><div class="game" onclick="startQuiz()"><b>💡 Quiz</b></div><div class="game" onclick="flagGame()"><b>🚩 Guess Flag</b></div><div class="game" onclick="whoGame()"><b>❓ Who Am I?</b></div><div class="game" onclick="clubGame()"><b>🏟️ Club Quiz</b></div><div class="game" onclick="jerseyGame()"><b>👕 Jersey Game</b></div><div class="game" onclick="stadiumGame()"><b>🏟️ Stadium Quiz</b></div></div></div>
 </div></section><div class="quote">“Football is more than a game. It's a connection between people, cultures and dreams.”<small>— Arjun's Football World</small></div>
 </div>
@@ -82,9 +88,36 @@
 <div class="listCard"><h3>👟 Positions</h3><p>Goalkeepers protect the goal; defenders protect space; midfielders connect play; forwards focus heavily on attacking and scoring.</p></div>
 <div class="listCard"><h3>🔄 Substitution</h3><p>A substitute can enter the match according to the competition's rules and the referee's procedure.</p></div>
 </div></div>
+
+<div id="deep" class="view">
+<section class="hero"><div class="heroContent"><h2>🧠 Deep-Dive Football</h2><p>For the die-hard fan: tactics, analytics, terminology, competition knowledge and historical trivia.</p></div></section>
+<div class="list">
+<div class="card"><div class="bigicon">📊</div><h3>xG — Expected Goals</h3><p>A model estimating the probability that a shot becomes a goal from characteristics of the chance. It is an estimate, not a prediction of an individual shot.</p></div>
+<div class="card"><div class="bigicon">📈</div><h3>PPDA</h3><p>Passes per defensive action is commonly used as a pressing-intensity indicator. Lower numbers generally mean fewer opponent passes are allowed before a defensive action.</p></div>
+<div class="card"><div class="bigicon">🧠</div><h3>Third-Man Run</h3><p>A player becomes the next receiver after a teammate uses a layoff or pass to release them, often bypassing an opponent.</p></div>
+<div class="card"><div class="bigicon">🔺</div><h3>Rest Defence</h3><p>The structure a team keeps behind the ball while attacking so it can control counterattacks after possession is lost.</p></div>
+<div class="card"><div class="bigicon">🧩</div><h3>Overload to Isolate</h3><p>A team overloads one zone to attract defenders, then attacks an isolated player or space elsewhere.</p></div>
+<div class="card"><div class="bigicon">↔️</div><h3>Switch of Play</h3><p>Quickly transferring the ball from one side of the pitch to the other to attack space created by defensive movement.</p></div>
+<div class="card"><div class="bigicon">🎯</div><h3>Half-Space</h3><p>The channel between the central lane and the wing, offering strong angles for passing, crossing and shots.</p></div>
+<div class="card"><div class="bigicon">🧱</div><h3>Low Block</h3><p>A compact defensive setup close to the team's own goal, prioritising protection of central space.</p></div>
+<div class="card"><div class="bigicon">⚡</div><h3>Gegenpressing</h3><p>Immediate pressure after losing possession, aiming to recover the ball before the opponent can organise.</p></div>
+<div class="card"><div class="bigicon">👟</div><h3>Regista</h3><p>An Italian football term for a deep-lying playmaker who directs possession and progression from a deeper zone.</p></div>
+<div class="card"><div class="bigicon">🔄</div><h3>Double Pivot</h3><p>Two midfielders share the base of the midfield, helping build up, protect transitions and circulate the ball.</p></div>
+<div class="card"><div class="bigicon">🎩</div><h3>Mezzala</h3><p>A shuttling central midfielder who often attacks the half-space and contributes beyond the central midfield line.</p></div>
+</div>
+<section class="section"><div class="panel"><div class="title"><h2>🏆 World Cup Quick Reference</h2><span class="muted">1930–2022</span></div>
+<table class="table"><thead><tr><th>Year</th><th>Champion</th><th>Runner-up</th></tr></thead><tbody>
+<tr><td>1930</td><td>Uruguay</td><td>Argentina</td></tr><tr><td>1934</td><td>Italy</td><td>Czechoslovakia</td></tr><tr><td>1938</td><td>Italy</td><td>Hungary</td></tr><tr><td>1950</td><td>Uruguay</td><td>Brazil</td></tr>
+<tr><td>1954</td><td>West Germany</td><td>Hungary</td></tr><tr><td>1958</td><td>Brazil</td><td>Sweden</td></tr><tr><td>1962</td><td>Brazil</td><td>Czechoslovakia</td></tr><tr><td>1966</td><td>England</td><td>West Germany</td></tr>
+<tr><td>1970</td><td>Brazil</td><td>Italy</td></tr><tr><td>1974</td><td>West Germany</td><td>Netherlands</td></tr><tr><td>1978</td><td>Argentina</td><td>Netherlands</td></tr><tr><td>1982</td><td>Italy</td><td>West Germany</td></tr>
+<tr><td>1986</td><td>Argentina</td><td>West Germany</td></tr><tr><td>1990</td><td>West Germany</td><td>Argentina</td></tr><tr><td>1994</td><td>Brazil</td><td>Italy</td></tr><tr><td>1998</td><td>France</td><td>Brazil</td></tr>
+<tr><td>2002</td><td>Brazil</td><td>Germany</td></tr><tr><td>2006</td><td>Italy</td><td>France</td></tr><tr><td>2010</td><td>Spain</td><td>Netherlands</td></tr><tr><td>2014</td><td>Germany</td><td>Argentina</td></tr>
+<tr><td>2018</td><td>France</td><td>Croatia</td></tr><tr><td>2022</td><td>Argentina</td><td>France</td></tr>
+</tbody></table></div></section>
+</div>
 <div id="me" class="view"><section class="hero"><div class="heroContent"><h2>🏆 Arjun's Football Career</h2><p>Keep playing to climb toward Football Legend.</p></div></section><div class="list"><div class="listCard"><h3>Level</h3><p id="meLevel"></p></div><div class="listCard"><h3>XP</h3><p id="meXP"></p></div><div class="listCard"><h3>Best Streak</h3><p id="meStreak"></p></div><div class="listCard"><h3>Questions</h3><p id="meQuestions"></p></div></div></div>
 
-<nav class="tabs"><button class="active" onclick="show('home',this)">🏠 Home</button><button onclick="show('world',this)">🌍 World</button><button onclick="show('players',this)">⭐ Players</button><button onclick="show('clubs',this)">🏟️ Clubs</button><button onclick="show('tournaments',this)">🏆 Cups</button><button onclick="show('games',this)">🎮 Games</button><button onclick="show('learn',this)">🎓 Learn</button><button onclick="show('me',this)">👤 Me</button></nav>
+<nav class="tabs"><button class="active" onclick="show('home',this)">🏠 Home</button><button onclick="show('world',this)">🌍 World</button><button onclick="show('players',this)">⭐ Players</button><button onclick="show('clubs',this)">🏟️ Clubs</button><button onclick="show('tournaments',this)">🏆 Cups</button><button onclick="show('games',this)">🎮 Games</button><button onclick="show('learn',this)">🎓 Learn</button><button onclick="show('deep',this)">🧠 Deep Dive</button><button onclick="show('me',this)">👤 Me</button></nav>
 </div>
 <script>
 const flagCode={Argentina:'ar',Portugal:'pt',France:'fr',Norway:'no',England:'gb-eng',Egypt:'eg',Brazil:'br',Belgium:'be',SouthKorea:'kr',Croatia:'hr',Poland:'pl'};
@@ -100,16 +133,80 @@ const countries=[['Argentina','Buenos Aires','🇦🇷','South America'],['Brazi
 const clubs=[['👑','Real Madrid','Spain','Santiago Bernabéu'],['🔵🔴','Barcelona','Spain','Spotify Camp Nou'],['🔴','Manchester United','England','Old Trafford'],['🔴','Liverpool','England','Anfield'],['🔴','Bayern Munich','Germany','Allianz Arena'],['🔵','Manchester City','England','Etihad Stadium'],['🔵','Chelsea','England','Stamford Bridge'],['🔴','Arsenal','England','Emirates Stadium'],['⚫⚪','Juventus','Italy','Allianz Stadium'],['🔴⚫','AC Milan','Italy','San Siro'],['🔵⚫','Inter Milan','Italy','San Siro'],['🟡⚫','Borussia Dortmund','Germany','Signal Iduna Park']];
 const tours=[['🏆','FIFA World Cup','International','Every 4 years'],['🏆','UEFA Champions League','Europe','Club competition'],['🏆','UEFA European Championship','Europe','National teams'],['🏆','Copa América','South America','National teams'],['🏆','Premier League','England','Club competition'],['🏆','La Liga','Spain','Club competition'],['🏆','Bundesliga','Germany','Club competition'],['🏆','Serie A','Italy','Club competition']];
 const quiz=[['Which country has won the most FIFA World Cups?',['Brazil','Germany','Italy','Argentina'],'Brazil'],['How many players from one team are normally on the field?',['9','10','11','12'],'11'],['What does VAR stand for?',['Video Assistant Referee','Virtual Attack Rule','Video Action Replay','Video Assistant Review'],'Video Assistant Referee'],['What is a hat-trick?',['3 assists','3 goals by one player','3 yellow cards','3 penalties saved'],'3 goals by one player'],['Which position protects the goal?',['Striker','Goalkeeper','Winger','Midfielder'],'Goalkeeper'],['Which card sends a player off?',['Blue','Green','Yellow','Red'],'Red'],['A standard match is how many minutes, excluding added time?',['60','75','90','120'],'90'],['Who is known as a goalkeeper?',['A player who protects the goal','A referee','A striker','A coach'],'A player who protects the goal']];
-let state=JSON.parse(localStorage.footballArjunV22||'{"xp":0,"answered":0,"streak":0,"best":0}'),qi=0;
-function level(){return Math.floor(state.xp/100)+1}function save(){localStorage.footballArjunV22=JSON.stringify(state);document.getElementById('level').textContent=level();document.getElementById('xp').textContent=state.xp+' XP';document.getElementById('meLevel').textContent=level();document.getElementById('meXP').textContent=state.xp+' XP';document.getElementById('meStreak').textContent=state.best;document.getElementById('meQuestions').textContent=state.answered;document.getElementById('cardLevel').textContent=level();document.getElementById('cardXP').textContent=state.xp;document.getElementById('cardQ').textContent=state.answered}
-function show(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
+const expertQuiz=[
+['Which country has won the most FIFA World Cups?',['Brazil','Germany','Italy','Argentina'],'Brazil'],
+['Who is the only player to have won three FIFA World Cups?',['Pelé','Diego Maradona','Lionel Messi','Cafu'],'Pelé'],
+['What does xG estimate?',['Probability a shot becomes a goal','Possession','Pass completion','Distance run'],'Probability a shot becomes a goal'],
+['What does PPDA commonly indicate?',['Pressing intensity','Transfer value','Goalkeeper quality','Offside frequency'],'Pressing intensity'],
+['What is a false nine?',['A striker who drops into deeper areas','A defensive midfielder','A goalkeeper who plays high','A winger who stays wide'],'A striker who drops into deeper areas'],
+['What is a double pivot?',['Two midfielders at the base of midfield','Two strikers','Two centre-backs','Two goalkeepers'],'Two midfielders at the base of midfield'],
+['What is a third-man run?',['A run by the eventual receiver after a teammate helps release them','A goalkeeper run','A third substitute entering','A referee run'],'A run by the eventual receiver after a teammate helps release them'],
+['What is a half-space?',['The channel between the centre and wing','The penalty spot','The goalmouth','The centre circle'],'The channel between the centre and wing'],
+['What is gegenpressing?',['Immediate pressure after losing the ball','Deep defending','Slow possession','A set-piece routine'],'Immediate pressure after losing the ball'],
+['What is a regista?',['A deep-lying playmaker','A target striker','A sweeper goalkeeper','A wide winger'],'A deep-lying playmaker'],
+['What is a mezzala?',['A shuttling central midfielder who attacks the half-space','A goalkeeper','A centre-back','A target man'],'A shuttling central midfielder who attacks the half-space'],
+['What is rest defence?',['The structure retained behind the ball during attack','A defensive substitution','A goalkeeper warm-up','A low corner kick'],'The structure retained behind the ball during attack'],
+['What is overload-to-isolate?',['Overload one area to create an isolated target elsewhere','Use two goalkeepers','Overload the penalty box','Play only through the middle'],'Overload one area to create an isolated target elsewhere'],
+['Which body is responsible for the Laws of the Game?',['IFAB','UEFA','IOC','Premier League'],'IFAB'],
+['What is an aggregate score?',['Combined score over two legs','Half-time score','Penalty shootout score','Goal difference only'],'Combined score over two legs'],
+['What is a clean sheet?',['Conceding zero goals','Scoring zero goals','Winning by one goal','Having no corners'],'Conceding zero goals'],
+['Which country won the 2010 World Cup?',['Spain','Netherlands','Germany','Brazil'],'Spain'],
+['Which country won the 2018 World Cup?',['France','Croatia','Germany','Argentina'],'France'],
+['Which country won the 2022 World Cup?',['Argentina','France','Brazil','Croatia'],'Argentina'],
+['Which country hosted the first FIFA World Cup?',['Uruguay','Brazil','Italy','France'],'Uruguay'],
+['Who scored the famous Hand of God goal at the 1986 World Cup?',['Diego Maradona','Pelé','Zidane','Cruyff'],'Diego Maradona'],
+['Who is the men’s World Cup all-time leading scorer?',['Miroslav Klose','Ronaldo Nazário','Gerd Müller','Lionel Messi'],'Miroslav Klose'],
+['Who is associated with the nickname Il Fenomeno?',['Ronaldo Nazário','Ronaldinho','Kaká','Romário'],'Ronaldo Nazário'],
+['Which club is nicknamed The Old Lady?',['Juventus','AC Milan','Ajax','Benfica'],'Juventus'],
+['Which stadium is shared by AC Milan and Inter?',['San Siro','Stadio Olimpico','Allianz Stadium','Maracanã'],'San Siro'],
+['Which club plays at Anfield?',['Liverpool','Everton','Arsenal','Chelsea'],'Liverpool'],
+['Which club plays at Santiago Bernabéu?',['Real Madrid','Barcelona','Atlético Madrid','Sevilla'],'Real Madrid'],
+['Which nation became strongly associated with Total Football in the 1970s?',['Netherlands','Italy','England','Brazil'],'Netherlands'],
+['What is a Panenka?',['A chipped penalty technique','A sliding tackle','A corner routine','A long pass'],'A chipped penalty technique'],
+['What is a nutmeg?',['Playing the ball through an opponent’s legs','A bicycle kick','A long-range shot','A corner'],'Playing the ball through an opponent’s legs'],
+['What is a high defensive line?',['A defensive line positioned relatively far from its own goal','A line of three forwards','A set-piece wall','A goalkeeper technique'],'A defensive line positioned relatively far from its own goal'],
+['What is a switch of play?',['Moving the ball quickly from one side to the other','Changing goalkeeper','Changing formation at half-time','Restarting after a goal'],'Moving the ball quickly from one side to the other'],
+['What is a treble?',['Winning three major competitions in one season','Three goals in one match','Three clean sheets','Three unbeaten seasons'],'Winning three major competitions in one season'],
+['What did the Bosman ruling primarily affect?',['Player movement after contracts expire in European football','VAR reviews','Penalty rules','World Cup qualification'],'Player movement after contracts expire in European football'],
+['What is a sweeper-keeper?',['A goalkeeper who proactively covers space behind the defence','A goalkeeper who never leaves the line','A substitute goalkeeper','A keeper who takes every penalty'],'A goalkeeper who proactively covers space behind the defence'],
+['Which legendary defender is strongly associated with the libero role?',['Franz Beckenbauer','Paolo Maldini','Virgil van Dijk','Cafu'],'Franz Beckenbauer'],
+['Which midfielder is strongly associated with the regista role?',['Andrea Pirlo','Erling Haaland','Sergio Ramos','Mohamed Salah'],'Andrea Pirlo'],
+['Which player is strongly associated with Total Football and shirt number 14?',['Johan Cruyff','Pelé','Maradona','Zidane'],'Johan Cruyff'],
+['Which player won the 1998 Ballon d’Or after France’s World Cup victory?',['Zinedine Zidane','Ronaldo Nazário','Rivaldo','Figo'],'Zinedine Zidane'],
+['What is a box-to-box midfielder?',['A midfielder contributing in both defensive and attacking areas','A goalkeeper who takes corners','A wide forward','A centre-back who attacks'],'A midfielder contributing in both defensive and attacking areas'],
+['What is a set piece?',['A restart such as a free kick or corner','A counterattack','A substitution','A tactical foul only'],'A restart such as a free kick or corner'],
+['What is a low block?',['Compact defending close to the team’s own goal','High pressing','A high defensive line','Possession football'],'Compact defending close to the team’s own goal'],
+['What is a false nine designed to create?',['Space by moving the nominal striker away from the centre-backs','More corner kicks','An extra goalkeeper','A deeper defensive line'],'Space by moving the nominal striker away from the centre-backs'],
+['Which nation has won the World Cup five times?',['Brazil','Germany','Italy','France'],'Brazil']
+];
+let state=JSON.parse(localStorage.footballArjunV3||'{"xp":0,"answered":0,"streak":0,"best":0}'),qi=0,quizOrder=[];
+function level(){return Math.floor(state.xp/100)+1}function save(){localStorage.footballArjunV3=JSON.stringify(state);document.getElementById('level').textContent=level();document.getElementById('xp').textContent=state.xp+' XP';document.getElementById('meLevel').textContent=level();document.getElementById('meXP').textContent=state.xp+' XP';document.getElementById('meStreak').textContent=state.best;document.getElementById('meQuestions').textContent=state.answered;document.getElementById('cardLevel').textContent=level();document.getElementById('cardXP').textContent=state.xp;document.getElementById('cardQ').textContent=state.answered}
+function show(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='games'&&!document.getElementById('answers').children.length)startQuiz()}
 function cards(arr){return arr.map((x,i)=>`<div class="listCard"><div style="font-size:31px">${x[2]||x[0]}</div><h3>${x[0]||x[1]}</h3><p>${x[1]||x[2]||''}${x[3]?'<br><b>'+x[3]+'</b>':''}</p></div>`).join('')}
-function renderPlayers(){document.getElementById('playerList').innerHTML=players.map(p=>`<div class="listCard"><div style="height:130px;display:grid;place-items:center;background:#0a223d;border-radius:14px;overflow:hidden">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:'⭐'}</div><div style="margin-top:8px">${flag(p[1])}</div><span class="pill">#${p[3]}</span><h3>${p[0]}</h3><p>${p[1]} national team player card.</p></div>`).join('');document.getElementById('homePlayers').innerHTML=players.slice(0,6).map(p=>`<div class="player"><div class="photo">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:p[2]}</div><div class="flag">${flag(p[1])}</div><b>${p[0]}</b><small>${p[1]}</small></div>`).join('')}
+function renderPlayers(){document.getElementById('playerList').innerHTML=players.map(p=>`<div class="listCard"><div style="height:130px;display:grid;place-items:center;background:#0a223d;border-radius:14px;overflow:hidden">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:'⭐'}</div><div style="margin-top:8px">${flag(p[1])}</div><span class="pill">#${p[3]}</span><h3>${p[0]}</h3><p>${p[1]} • ${p[2]} • #${p[3]}<br>${p[4]}</p></div>`).join('');document.getElementById('homePlayers').innerHTML=players.slice(0,6).map(p=>`<div class="player"><div class="photo">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:p[2]}</div><div class="flag">${flag(p[1])}</div><b>${p[0]}</b><small>${p[1]}</small></div>`).join('')}
 function renderWorld(){let q=(document.getElementById('countrySearch').value||'').toLowerCase();document.getElementById('worldList').innerHTML=countries.filter(c=>c[0].toLowerCase().includes(q)).map(c=>`<div class="listCard"><div>${flag(c[0])||'<span style="font-size:42px">🌍</span>'}</div><span class="pill">${c[3]}</span><h3>${c[0]}</h3><p>Capital: <b>${c[1]}</b><br>Football country explorer.</p></div>`).join('')}
 function renderClubs(){document.getElementById('clubList').innerHTML=clubs.map(c=>`<div class="listCard"><div style="font-size:40px">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}<br>Home: <b>${c[3]}</b></p></div>`).join('');document.getElementById('topClubs').innerHTML=clubs.slice(0,6).map(c=>`<div class="club"><div class="crest">${c[0]}</div><b>${c[1]}</b><small>${c[2]}</small></div>`).join('')}
 function renderTours(){document.getElementById('tourList').innerHTML=tours.map(t=>`<div class="listCard"><div style="font-size:40px">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}<br>${t[3]}</p></div>`).join('')}
-function startQuiz(){show('games');qi=0;nextQuiz()}
-function nextQuiz(){if(qi>=quiz.length){document.getElementById('question').textContent='🏁 Challenge Complete!';document.getElementById('answers').innerHTML='<button onclick="startQuiz()">Play Again</button>';return}let q=quiz[qi];document.getElementById('gameType').textContent='Football Quiz • '+(qi+1)+'/'+quiz.length;document.getElementById('question').textContent=q[0];document.getElementById('result').textContent='';document.getElementById('answers').innerHTML='';q[1].slice().sort(()=>Math.random()-.5).forEach(a=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>answer(a,q[2]);document.getElementById('answers').appendChild(b)})}
+function startQuiz(){show('games');qi=0;quizOrder=expertQuiz.map((_,i)=>i).sort(()=>Math.random()-.5).slice(0,10);nextQuiz()}
+function nextQuiz(){
+if(qi>=quizOrder.length){
+document.getElementById('question').textContent='🏁 Challenge Complete! You survived the Mastermind.';
+document.getElementById('answers').innerHTML='<button class="primary" onclick="startQuiz()">▶ New Challenge</button>';
+document.getElementById('gameType').textContent='Mastermind Complete';
+document.getElementById('qnum').textContent='10 / 10';
+return;
+}
+let q=expertQuiz[quizOrder[qi]];
+document.getElementById('gameType').textContent='Football Mastermind';
+document.getElementById('qnum').textContent='Question '+(qi+1)+' / 10';
+document.getElementById('question').textContent=q[0];
+document.getElementById('result').textContent='';
+document.getElementById('answers').innerHTML='';
+q[1].slice().sort(()=>Math.random()-.5).forEach(a=>{
+let btn=document.createElement('button');btn.textContent=a;
+btn.onclick=()=>answer(a,q[2]);document.getElementById('answers').appendChild(btn);
+});
+}
 function answer(a,c){document.querySelectorAll('.answers button').forEach(b=>b.disabled=true);if(a===c){state.xp+=20;state.streak++;state.best=Math.max(state.best,state.streak);document.getElementById('result').textContent='✅ Correct! +20 XP'}else{state.streak=0;document.getElementById('result').textContent='❌ Correct answer: '+c}state.answered++;save();qi++;setTimeout(nextQuiz,650)}
 function mini(title,q,a){show('games');document.getElementById('gameType').textContent=title;document.getElementById('question').textContent=q;document.getElementById('result').textContent='';document.getElementById('answers').innerHTML=a.map(x=>`<button onclick="miniAnswer(this,'${x.replaceAll("'","\\'")}')">${x}</button>`).join('')}
 function miniAnswer(btn,x){document.querySelectorAll('.answers button').forEach(b=>b.disabled=true);document.getElementById('result').textContent='🎉 Great try! +10 XP';state.xp+=10;state.answered++;save()}
@@ -118,5 +215,5 @@ function whoGame(){mini('Who Am I?','I am from Argentina and famous for wearing 
 function clubGame(){mini('Club Quiz','Which club plays at Anfield?',['Liverpool','Bayern Munich','Real Madrid','Juventus'])}
 function jerseyGame(){mini('Jersey Game','Which player is strongly associated with the number 10 for Argentina?',['Lionel Messi','Cristiano Ronaldo','Haaland','Salah'])}
 function stadiumGame(){mini('Stadium Quiz','Which club calls Old Trafford home?',['Manchester United','Barcelona','Inter Milan','Arsenal'])}
-renderPlayers();renderWorld();renderClubs();renderTours();save();
+renderPlayers();renderWorld();renderClubs();renderTours();save();startQuiz();
 </script></body></html>
