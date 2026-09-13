@@ -1,8 +1,1 @@
-{
-  "name": "Arjun's Football World",
-  "short_name": "Football World",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#06142d",
-  "theme_color": "#06142d"
-}
+{"name":"Arjun Football World Deluxe","short_name":"Arjun Football","start_url":"./","display":"standalone","background_color":"#06142d","theme_color":"#06142d","icons":[]}
