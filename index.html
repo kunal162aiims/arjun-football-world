@@ -32,7 +32,12 @@
 .quiz{background:#102f52;border:1px solid #2b5276;border-radius:20px;padding:19px}.answers{display:grid;gap:9px}.answers button{background:#183c63;color:#fff;border:0;border-radius:13px;padding:13px;text-align:left;font-weight:700}.result{min-height:24px;margin-top:12px;font-weight:700}.pill{display:inline-block;background:#17426a;color:#bfe3ff;padding:5px 9px;border-radius:99px;font-size:11px;font-weight:700}
 @media(max-width:800px){.quick{grid-template-columns:repeat(4,1fr)}.featureGrid,.lower{grid-template-columns:1fr}.playerRow{grid-template-columns:repeat(3,1fr)}.list{grid-template-columns:repeat(2,1fr)}.hero h2{font-size:29px}}
 @media(max-width:500px){.brand h1{font-size:21px}.brand p{font-size:10px}.avatar{display:none}.hero{min-height:245px;padding:20px}.quick{grid-template-columns:repeat(2,1fr)}.playerRow{grid-template-columns:repeat(2,1fr)}.tabs button{font-size:9px}.tabs button:nth-child(n+7){display:none}}
-</style></head><body><div class="app">
+
+.quizHero{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:10px}
+.quizScore{font-size:12px;color:#b9cee6;background:#0b294a;padding:8px 12px;border-radius:12px}
+.answers button.correct{background:#087b50!important;border-color:#21df91!important}
+.answers button.wrong{background:#7a2441!important;border-color:#ff6c8f!important}
+""</style></head><body><div class="app">
 <header><div class="brand"><div class="ball">⚽</div><div><h1>Arjun's Football World <span style="color:#18d47d">V3</span></h1><p>Learn • Explore • Play • Become a Football Expert!</p></div></div><div class="level"><div class="levelbox">⭐ <b id="level">1</b><small id="xp">0 XP</small></div><img class="avatar" src="arjun-profile.jpg" alt="Arjun"></div></header>
 <section class="arjunCard">
   <img src="arjun-profile.jpg" alt="Arjun" class="arjunPhoto">
@@ -77,7 +82,11 @@
 <div id="players" class="view"><section class="hero"><div class="heroContent"><h2>⭐ Star Players</h2><p>Learn about famous footballers and their national teams.</p></div></section><div class="list" id="playerList"></div></div>
 <div id="clubs" class="view"><section class="hero"><div class="heroContent"><h2>🏟️ Club House</h2><p>Explore famous clubs, countries and stadiums.</p></div></section><div class="list" id="clubList"></div></div>
 <div id="tournaments" class="view"><section class="hero"><div class="heroContent"><h2>🏆 Tournaments</h2><p>Big competitions that make football history.</p></div></section><div class="list" id="tourList"></div></div>
-<div id="games" class="view"><section class="hero"><div class="heroContent"><h2>🎮 Game Zone</h2><p>Choose a challenge and earn XP.</p></div></section><div class="quiz"><span class="pill" id="gameType">Football Quiz</span><h2 id="question">Press a game above or start the quiz.</h2><div class="answers" id="answers"></div><div class="result" id="result"></div></div></div>
+<div id="games" class="view">
+<section class="hero"><div class="heroContent"><h2>🎮 Football Mastermind</h2><p>Serious football questions: tactics, history, players, clubs, records and Laws of the Game.</p></div></section>
+<div class="quizHero"><div><span class="pill" id="gameType">FOOTBALL MASTERMIND</span><h2 style="margin:7px 0 0">Can Arjun beat the experts?</h2></div><div class="quizScore"><span id="qnum">Question 1 / 10</span> • <span id="quizXP">0 XP</span></div></div>
+<div class="quiz"><h2 id="question">Loading challenge…</h2><div class="answers" id="answers"></div><div class="result" id="result"></div></div>
+</div>
 <div id="learn" class="view"><section class="hero"><div class="heroContent"><h2>🎓 Football Academy</h2><p>Understand the beautiful game.</p></div></section><div class="list">
 <div class="listCard"><h3>🚩 Offside</h3><p>A player is generally offside if, when a teammate plays the ball, they are nearer the opponents' goal line than both the ball and the second-last opponent, unless an exception applies.</p></div>
 <div class="listCard"><h3>🎥 VAR</h3><p>Video Assistant Referee supports officials with reviews of certain important match decisions.</p></div>
@@ -121,12 +130,7 @@
 </div>
 <script>
 const flagCode={Argentina:'ar',Portugal:'pt',France:'fr',Norway:'no',England:'gb-eng',Egypt:'eg',Brazil:'br',Belgium:'be',SouthKorea:'kr',Croatia:'hr',Poland:'pl'};
-const playerImages={
-'Lionel Messi':'https://upload.wikimedia.org/wikipedia/commons/c/c8/Lionel_Messi_WC2022.jpg',
-'Cristiano Ronaldo':'https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg',
-'Kylian Mbappé':'https://upload.wikimedia.org/wikipedia/commons/5/5c/Kylian_Mbapp%C3%A9_2019.jpg',
-'Erling Haaland':'https://upload.wikimedia.org/wikipedia/commons/8/8c/Erling_Haaland_2023.jpg'
-};
+const playerImages={"Lionel Messi":"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg/330px-Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg","Cristiano Ronaldo":"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_%28cropped%29.jpg/330px-Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_%28cropped%29.jpg","Kylian Mbappé":"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg/330px-Kylian_Mbappe_France_v_Senegal_16_June_2026-391_%28cropped%29.jpg","Erling Haaland":"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg/330px-Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg","Jude Bellingham":"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg/330px-Jude_Bellingham_England_v_Ghana_23_June_2026-061_%28cropped%29.jpg","Mohamed Salah":"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg/330px-Mohamed_Salah_Argentina_v_Egypt_7_July_2026-163_%28cropped%29.jpg","Vinícius Jr.":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg/330px-Vin%C3%ADcius_J%C3%BAnior_Brazil_V_Morocco_13_June_2026-207_%28cropped%29.jpg","Kevin De Bruyne":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg/330px-Kevin_De_Bruyne_USMNT_v_Belgium_Mar_28_2026-64_%28cropped%29.jpg","Son Heung-min":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg/330px-BFA_2023_-2_Heung-Min_Son_%28cropped%29.jpg","Luka Modrić":"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg/330px-Luka_Modric_Croatia_v_Portugal_2_July_2026-055.jpg","Neymar":"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Neymar_Junior_Brazil_V_Morocco_13_June_2026-40.jpg/330px-Neymar_Junior_Brazil_V_Morocco_13_June_2026-40.jpg","Robert Lewandowski":"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/2019147183134_2019-05-27_Fussball_1.FC_Kaiserslautern_vs_FC_Bayern_M%C3%BCnchen_-_Sven_-_1D_X_MK_II_-_0228_-_B70I8527_%28cropped%29.jpg/330px-2019147183134_2019-05-27_Fussball_1.FC_Kaiserslautern_vs_FC_Bayern_M%C3%BCnchen_-_Sven_-_1D_X_MK_II_-_0228_-_B70I8527_%28cropped%29.jpg"};
 function flag(country){let c=flagCode[country]||'';return c?`<img class="flagImg" src="https://flagcdn.com/w80/${c}.png" alt="${country} flag">`:''}
 const players=[['Lionel Messi','Argentina','🇦🇷','10'],['Cristiano Ronaldo','Portugal','🇵🇹','7'],['Kylian Mbappé','France','🇫🇷','10'],['Erling Haaland','Norway','🇳🇴','9'],['Jude Bellingham','England','🏴','5'],['Mohamed Salah','Egypt','🇪🇬','11'],['Vinícius Jr.','Brazil','🇧🇷','7'],['Kevin De Bruyne','Belgium','🇧🇪','7'],['Son Heung-min','South Korea','🇰🇷','7'],['Luka Modrić','Croatia','🇭🇷','10'],['Neymar','Brazil','🇧🇷','10'],['Robert Lewandowski','Poland','🇵🇱','9']];
 const countries=[['Argentina','Buenos Aires','🇦🇷','South America'],['Brazil','Brasília','🇧🇷','South America'],['France','Paris','🇫🇷','Europe'],['Spain','Madrid','🇪🇸','Europe'],['England','London','🏴','Europe'],['Germany','Berlin','🇩🇪','Europe'],['Italy','Rome','🇮🇹','Europe'],['Portugal','Lisbon','🇵🇹','Europe'],['Netherlands','Amsterdam','🇳🇱','Europe'],['Belgium','Brussels','🇧🇪','Europe'],['Egypt','Cairo','🇪🇬','Africa'],['Morocco','Rabat','🇲🇦','Africa'],['Japan','Tokyo','🇯🇵','Asia'],['India','New Delhi','🇮🇳','Asia'],['USA','Washington, D.C.','🇺🇸','North America'],['Mexico','Mexico City','🇲🇽','North America'],['Uruguay','Montevideo','🇺🇾','South America'],['Croatia','Zagreb','🇭🇷','Europe'],['Colombia','Bogotá','🇨🇴','South America'],['Senegal','Dakar','🇸🇳','Africa']];
@@ -179,11 +183,16 @@ const expertQuiz=[
 ['What is a false nine designed to create?',['Space by moving the nominal striker away from the centre-backs','More corner kicks','An extra goalkeeper','A deeper defensive line'],'Space by moving the nominal striker away from the centre-backs'],
 ['Which nation has won the World Cup five times?',['Brazil','Germany','Italy','France'],'Brazil']
 ];
-let state=JSON.parse(localStorage.footballArjunV3||'{"xp":0,"answered":0,"streak":0,"best":0}'),qi=0,quizOrder=[];
-function level(){return Math.floor(state.xp/100)+1}function save(){localStorage.footballArjunV3=JSON.stringify(state);document.getElementById('level').textContent=level();document.getElementById('xp').textContent=state.xp+' XP';document.getElementById('meLevel').textContent=level();document.getElementById('meXP').textContent=state.xp+' XP';document.getElementById('meStreak').textContent=state.best;document.getElementById('meQuestions').textContent=state.answered;document.getElementById('cardLevel').textContent=level();document.getElementById('cardXP').textContent=state.xp;document.getElementById('cardQ').textContent=state.answered}
+let state=JSON.parse(localStorage.footballArjunV4||'{"xp":0,"answered":0,"streak":0,"best":0}'),qi=0,quizOrder=[];
+function level(){return Math.floor(state.xp/100)+1}function save(){
+localStorage.footballArjunV4=JSON.stringify(state);
+const set=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val};
+set('level',level());set('xp',state.xp+' XP');set('meLevel',level());set('meXP',state.xp+' XP');
+set('meStreak',state.best);set('meQuestions',state.answered);set('cardLevel',level());set('cardXP',state.xp);set('cardQ',state.answered);
+}
 function show(id,btn){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');if(id==='games'&&!document.getElementById('answers').children.length)startQuiz()}
 function cards(arr){return arr.map((x,i)=>`<div class="listCard"><div style="font-size:31px">${x[2]||x[0]}</div><h3>${x[0]||x[1]}</h3><p>${x[1]||x[2]||''}${x[3]?'<br><b>'+x[3]+'</b>':''}</p></div>`).join('')}
-function renderPlayers(){document.getElementById('playerList').innerHTML=players.map(p=>`<div class="listCard"><div style="height:130px;display:grid;place-items:center;background:#0a223d;border-radius:14px;overflow:hidden">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:'⭐'}</div><div style="margin-top:8px">${flag(p[1])}</div><span class="pill">#${p[3]}</span><h3>${p[0]}</h3><p>${p[1]} • ${p[2]} • #${p[3]}<br>${p[4]}</p></div>`).join('');document.getElementById('homePlayers').innerHTML=players.slice(0,6).map(p=>`<div class="player"><div class="photo">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}">`:p[2]}</div><div class="flag">${flag(p[1])}</div><b>${p[0]}</b><small>${p[1]}</small></div>`).join('')}
+function renderPlayers(){document.getElementById('playerList').innerHTML=players.map(p=>`<div class="listCard"><div style="height:130px;display:grid;place-items:center;background:#0a223d;border-radius:14px;overflow:hidden">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}" onerror="this.style.display='none'">`:'⭐'}</div><div style="margin-top:8px">${flag(p[1])}</div><span class="pill">#${p[3]}</span><h3>${p[0]}</h3><p>${p[1]} • ${p[2]} • #${p[3]}<br>${p[4]}</p></div>`).join('');document.getElementById('homePlayers').innerHTML=players.slice(0,12).map(p=>`<div class="player"><div class="photo">${playerImages[p[0]]?`<img class="photoImg" src="${playerImages[p[0]]}" alt="${p[0]}" onerror="this.style.display='none'">`:p[2]}</div><div class="flag">${flag(p[1])}</div><b>${p[0]}</b><small>${p[1]}</small></div>`).join('')}
 function renderWorld(){let q=(document.getElementById('countrySearch').value||'').toLowerCase();document.getElementById('worldList').innerHTML=countries.filter(c=>c[0].toLowerCase().includes(q)).map(c=>`<div class="listCard"><div>${flag(c[0])||'<span style="font-size:42px">🌍</span>'}</div><span class="pill">${c[3]}</span><h3>${c[0]}</h3><p>Capital: <b>${c[1]}</b><br>Football country explorer.</p></div>`).join('')}
 function renderClubs(){document.getElementById('clubList').innerHTML=clubs.map(c=>`<div class="listCard"><div style="font-size:40px">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}<br>Home: <b>${c[3]}</b></p></div>`).join('');document.getElementById('topClubs').innerHTML=clubs.slice(0,6).map(c=>`<div class="club"><div class="crest">${c[0]}</div><b>${c[1]}</b><small>${c[2]}</small></div>`).join('')}
 function renderTours(){document.getElementById('tourList').innerHTML=tours.map(t=>`<div class="listCard"><div style="font-size:40px">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}<br>${t[3]}</p></div>`).join('')}
@@ -198,7 +207,7 @@ return;
 }
 let q=expertQuiz[quizOrder[qi]];
 document.getElementById('gameType').textContent='Football Mastermind';
-document.getElementById('qnum').textContent='Question '+(qi+1)+' / 10';
+document.getElementById('qnum').textContent='Question '+(qi+1)+' / 10';document.getElementById('quizXP').textContent=state.xp+' XP';
 document.getElementById('question').textContent=q[0];
 document.getElementById('result').textContent='';
 document.getElementById('answers').innerHTML='';
@@ -207,7 +216,13 @@ let btn=document.createElement('button');btn.textContent=a;
 btn.onclick=()=>answer(a,q[2]);document.getElementById('answers').appendChild(btn);
 });
 }
-function answer(a,c){document.querySelectorAll('.answers button').forEach(b=>b.disabled=true);if(a===c){state.xp+=20;state.streak++;state.best=Math.max(state.best,state.streak);document.getElementById('result').textContent='✅ Correct! +20 XP'}else{state.streak=0;document.getElementById('result').textContent='❌ Correct answer: '+c}state.answered++;save();qi++;setTimeout(nextQuiz,650)}
+function answer(a,c){
+const buttons=[...document.querySelectorAll('.answers button')];
+buttons.forEach(b=>{b.disabled=true;if(b.textContent===c)b.classList.add('correct');if(b.textContent===a&&a!==c)b.classList.add('wrong')});
+if(a===c){state.xp+=20;state.streak++;state.best=Math.max(state.best,state.streak);document.getElementById('result').textContent='✅ Correct! +20 XP';}
+else{state.streak=0;document.getElementById('result').textContent='❌ Correct answer: '+c;}
+state.answered++;save();document.getElementById('quizXP').textContent=state.xp+' XP';qi++;setTimeout(nextQuiz,1100);
+}
 function mini(title,q,a){show('games');document.getElementById('gameType').textContent=title;document.getElementById('question').textContent=q;document.getElementById('result').textContent='';document.getElementById('answers').innerHTML=a.map(x=>`<button onclick="miniAnswer(this,'${x.replaceAll("'","\\'")}')">${x}</button>`).join('')}
 function miniAnswer(btn,x){document.querySelectorAll('.answers button').forEach(b=>b.disabled=true);document.getElementById('result').textContent='🎉 Great try! +10 XP';state.xp+=10;state.answered++;save()}
 function flagGame(){mini('Guess the Flag','Which country uses 🇧🇷?',['Brazil','France','Japan','Egypt'])}
